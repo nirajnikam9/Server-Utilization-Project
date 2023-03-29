@@ -1,0 +1,36 @@
+#!/bin/bash
+
+echo "****SERVER UTILIATION USING SHELL SCRIPT****"
+
+echo "WELCOME, by User $(whoami)"
+
+
+echo "Today's Date: "
+date | awk '{print $3,$2,$6 }'
+
+echo "Time:"
+date | awk '{print $4}'
+
+echo "======================================="
+
+echo "server update time is"
+uptime
+
+echo "Top $1 last logins"
+last -a | head -$s1
+
+
+echo "======================================="
+
+echo "My server disk utilization:"
+df -h | xargs | awk '{print "Free disk space is:" $11 }'
+df -h | xargs | awk '{print "Total disk space is:" $9 }'
+
+
+echo "======================================="
+
+echo "Server Ram utilization:"
+free -h | xargs | awk '{print "Free Memory:" $10}'
+free -h | xargs | awk '{print "Total Memory:" $8}'
+
+echo "*********************THANKS*********************"
