@@ -1,9 +1,7 @@
-#!/bin/bash
 
 echo "****SERVER UTILIATION USING SHELL SCRIPT****"
 
 echo "WELCOME, by User $(whoami)"
-
 
 echo "Today's Date: "
 date | awk '{print $3,$2,$6 }'
@@ -19,18 +17,29 @@ uptime
 echo "Top $1 last logins"
 last -a | head -$s1
 
-
 echo "======================================="
 
 echo "My server disk utilization:"
 df -h | xargs | awk '{print "Free disk space is:" $11 }'
 df -h | xargs | awk '{print "Total disk space is:" $9 }'
+echo "percentage of Server Utilised" && df -h | xargs | awk '{print $11/$9*100 "%"}'
+diskspace=$(df -h | xargs | awk '{print $11/$9*100}')
+int_disk=$(printf "%.0f" "${diskspace}")
+To="XYZ@gmail.com"
 
+ if [[ "$int_disk" -gt "50" ]]
+
+  then
+
+          echo "Your Server Utilization is more than 50%"
+         echo "Subject:WARNING, Server Utilization is High" | sendmail $To
+  fi
 
 echo "======================================="
 
 echo "Server Ram utilization:"
 free -h | xargs | awk '{print "Free Memory:" $10}'
 free -h | xargs | awk '{print "Total Memory:" $8}'
+echo "percentage of ram utilised" && free -h | xargs | awk '{print $10/$8*100}'
 
 echo "*********************THANKS*********************"
